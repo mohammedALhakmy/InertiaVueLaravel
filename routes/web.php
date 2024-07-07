@@ -12,7 +12,9 @@ Route::get('/', function () {
 });
 
 Route::get('Users',function (){
-   return Inertia::render('Users');
+   return Inertia::render('Users',[
+       'time' => now()->toTimeString(),
+   ]);
 });
 
 
