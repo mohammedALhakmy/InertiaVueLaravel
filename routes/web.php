@@ -11,3 +11,19 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('Users',function (){
+   return Inertia::render('Users',[
+       'time' => now()->toTimeString(),
+   ]);
+});
+
+
+Route::get('Setting',function (){
+   return Inertia::render("Setting");
+});
+
+Route::post('logout',function (){
+   return dd("Login the User Out");
+});
+
+//nav>ul>li*3>a[href=#]
