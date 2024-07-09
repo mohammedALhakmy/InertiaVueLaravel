@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <h1 class="text-3xl font-bold underline">Users</h1>
+        <h1 class="text-3xl font-bold underline">Users </h1>
         <div style="margin-top: 600px">
             <p>The current time is {{ time }}</p>
         </div>
