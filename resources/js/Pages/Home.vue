@@ -7,16 +7,12 @@
     </Layout>
 </template>
 
-<script>
+<script setup>
 import  Layout  from "../Shared/Layout.vue"
-export default {
-    components: { Layout },
-    name: "Welcome",
-    props:{
-        name: String,
-        frameworks:Array
-    }
-}
+defineProps({
+    name: String,
+    frameworks:Array
+});
 </script>
 
 <style scoped>
