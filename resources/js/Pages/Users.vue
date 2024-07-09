@@ -8,16 +8,12 @@
     </Layout>
 </template>
 
-<script>
+<script setup>
 import Layout from "../Shared/Layout.vue";
 import { Link } from "@inertiajs/vue3";
-export default {
-    components:{ Layout,Link},
-name: "Users",
-    props:{
-        time:String,
-    }
-}
+ defineProps({
+     time:String,
+ });
 </script>
 
 <style scoped>
