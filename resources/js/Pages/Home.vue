@@ -9,7 +9,6 @@
 import  Layout  from "../Shared/Layout.vue";
 export default{
     frameworks:Array,
-    layout:Layout
 };
 </script>
 
