@@ -17,9 +17,11 @@ createInertiaApp({
             .use(plugin)
             .mount(el)
     },
+    // title: title => "My App - " + title,
+    title: title => `My App - ${title}` ,
     progress: {
         delay: 250,
-        color: '#c79322',
+        color: '#000000',
         includeCSS: true,
         showSpinner: false,
     },

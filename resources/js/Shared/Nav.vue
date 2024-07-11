@@ -1,6 +1,6 @@
 <template>
     <nav class="ml-6">
-        <ul class="flex list-disc space-x-4 list-inside">
+        <ul class="flex space-x-6 list-inside">
 <!--            :class="{'font-bold underline':$page.url === '/'}"-->
             <li>
 <!--                <Link href="/" class="text-gray-900 hover:underline" :class="{'font-bold underline':$page.component === 'Home'}">Home</Link>-->
