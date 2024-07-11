@@ -1,4 +1,8 @@
 <template>
+    <Head>
+        <title>My App </title>
+        <meta type="description" content="information about my app">
+    </Head>
     <section class="p-6 bg-gray-200">
         <header class="flex justify-between">
             <div class="flex items-center">
@@ -11,9 +15,6 @@
 
     <section class="p-6">
         <div class="max-w-3xl mx-auto">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/m2ysvU0Xh7M?si=U8mxtIVOYd6NhC63"
-                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <slot />
         </div>
     </section>
