@@ -9,8 +9,7 @@
             <!-- Uncomment the following line if needed -->
             <!-- <Link v-if="can.createUser" href="/Users/Create" class="text-blue-500 text-sm ml-3">New User</Link> -->
         </div>
-        <!-- Uncomment the following line if needed -->
-        <!-- <input v-model="search" type="text" placeholder="Search ..." class="border px-2 rounded-lg"> -->
+         <input v-model="search" type="text" placeholder="Search ..." class="border px-2 rounded-lg">
     </div>
     <div class="flex flex-col">
         <div class="my-2 overflow-x-auto sm:mx-6 lg:-mx-8">
@@ -43,12 +42,39 @@
 
 <script setup>
 import { Link,Head } from "@inertiajs/vue3";
-import { defineProps } from 'vue';
+import { defineProps,ref,watch } from 'vue';
+import { Inertia } from '@inertiajs/inertia';
+import debounce from 'lodash/debounce';
+
 import Pagination from "../Shared/Pagination.vue";
 
 const props = defineProps({
-    users: Object
+    users: Object,
+    filters: Object,
 });
+
+// let search = ref( '');
+ let search = ref(props.filters.search ?? '');
+const searchUsers = debounce((value) => {
+    Inertia.get('/Users', { search: value }, {
+        preserveState: true,
+        replace: true,
+    });
+});
+watch(search, (value) => {
+    searchUsers(value);
+});
+/*
+const searchUsers = debounce((value) => {
+    Inertia.get('/Users', { search: value }, {
+        preserveState: true,
+        replace: true,
+    });
+}, 300);
+
+watch(search, (value) => {
+    searchUsers(value);
+});*/
 </script>
 
 <style scoped>
