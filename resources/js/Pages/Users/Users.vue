@@ -7,7 +7,8 @@
         <div class="flex item-center">
             <h1 class="text-2xl font-bold">Users</h1>
             <!-- Uncomment the following line if needed -->
-            <!-- <Link v-if="can.createUser" href="/Users/Create" class="text-blue-500 text-sm ml-3">New User</Link> -->
+<!--            v-if="can.createUser"-->
+             <Link  href="/Users/Create" class="text-blue-500 text-sm ml-3">New User</Link>
         </div>
          <input v-model="search" type="text" placeholder="Search ..." class="border px-2 rounded-lg">
     </div>
@@ -46,7 +47,7 @@ import { defineProps,ref,watch } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
 import debounce from 'lodash/debounce';
 
-import Pagination from "../Shared/Pagination.vue";
+import Pagination from "../../Shared/Pagination.vue";
 
 const props = defineProps({
     users: Object,

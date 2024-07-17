@@ -44,4 +44,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function setPasswordAttribute($vaule){
+        $this->attributes['password'] = bcrypt($vaule);
+    }
 }
