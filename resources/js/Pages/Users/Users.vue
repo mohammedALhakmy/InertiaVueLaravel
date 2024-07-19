@@ -7,8 +7,8 @@
         <div class="flex item-center">
             <h1 class="text-2xl font-bold">Users</h1>
             <!-- Uncomment the following line if needed -->
-<!--            v-if="can.createUser"-->
-             <Link  href="/Users/Create" class="text-blue-500 text-sm ml-3">New User</Link>
+
+             <Link  v-if="can.createUser" href="/Users/Create" class="text-blue-500 text-sm ml-3">New User</Link>
         </div>
          <input v-model="search" type="text" placeholder="Search ..." class="border px-2 rounded-lg">
     </div>
@@ -28,8 +28,17 @@
                                     </div>
                                 </div>
                             </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ user.email }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <Link :href="'/Users/'+user.id+'/edit'" class="text-indigo-600 hover:text-indigo-900">Edit</Link>
+                                <Link v-if="user.can.edit" :href="'/Users/'+user.id+'/edit'" class="text-indigo-600 hover:text-indigo-900">Edit</Link>
                             </td>
                         </tr>
                         </tbody>
@@ -47,11 +56,12 @@ import { defineProps,ref,watch } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
 import debounce from 'lodash/debounce';
 
-import Pagination from "../../Shared/Pagination.vue";
+import Pagination from "../Shared/Pagination.vue";
 
 const props = defineProps({
     users: Object,
     filters: Object,
+    can: Object,
 });
 
 // let search = ref( '');

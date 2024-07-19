@@ -1,10 +1,14 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Models\User;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 
+Route::get('login',[LoginController::class,'index'])->name('login');
+Route::post('login',[LoginController::class,'store']);
+Route::middleware('auth')->group(function (){
 Route::get('/', function () {
     return Inertia::render('Home',[
         'frameworks' => [
@@ -32,9 +36,17 @@ Route::get('Users', function () {
                 ->withQueryString()
                             ->through(fn($user) => [
                 'id' => $user->id,
-                'name' => $user->name
+                'name' => $user->name,
+                'email' => $user->email,
+                'can' => [
+                    'edit' => \Illuminate\Support\Facades\Auth::user()->can('edit',$user)
+                ]
             ]),
-            'filters' => Request::only(['search'])
+            'filters' => Request::only(['search']),
+            'can' => [
+//                'createUser' => \Illuminate\Support\Facades\Auth::user()->email === "mohammed@gmail.com"
+                'createUser' => \Illuminate\Support\Facades\Auth::user()->can('create',User::class)
+            ]
         ]);
 });
 
@@ -54,14 +66,18 @@ Route::post('/Users',function (){
 
 Route::get('/Users/Create',function (){
    return Inertia::render('Users/Create');
-});
+//})->middleware('can:create,App\Models\User');
+})->can('create','App\Models\User');
 
 Route::get('Setting',function (){
    return Inertia::render("Setting");
 });
 
-Route::post('logout',function (){
-   return dd("Login the User Out");
+    Route::post('/logout',[LoginController::class,'destroy'])->middleware('auth');
+
 });
 
 //nav>ul>li*3>a[href=#]
+// npm install lodash --save-dev
+//https://dar-co.com.sa/projects/
+// php artisan make:policy UserPolicy --model=User
